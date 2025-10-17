@@ -126,7 +126,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+MEDIA_URL = "/media/"  # URL for media files, accessible in the browser
+MEDIA_ROOT = (
+    BASE_DIR / "portfolio" / "media"
+)  # Directory where media files are stored locally
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = "/static/"
+
+# Directory where Django will collect static files
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Additional directories to look for static files
+STATICFILES_DIRS = [
+    BASE_DIR / "portfolio" / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

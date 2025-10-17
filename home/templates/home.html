@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+	
+</head>
+<body>
+	<section class="banner">
+		<div class="banner-left">
+			<!-- replace the path below with your static image path -->
+			<img src="{% static 'images/home_banner.jpg' %}" alt="Artwork" />
+		</div>
+		<div class="banner-right">
+			<p class="subtitle">Write a short description or intro here. This area is meant for your headline, call-to-action, or short artist statement.</p>
+		</div>
+	</section>
+</body>
+</html>
+

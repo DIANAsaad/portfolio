@@ -1,0 +1,83 @@
+:root {
+  --banner-brown: #7b5530;
+  --banner-height: 72vh;
+}
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Helvetica, Arial, sans-serif;
+  background: #fff;
+}
+.banner {
+  display: flex;
+  align-items: flex-start;
+  min-height: var(--banner-height);
+  overflow: hidden;
+}
+.banner-left {
+  flex: 1;
+  background: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+}
+.banner-left img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  margin-left: 18px;
+}
+.banner-right {
+  background-color: var(--banner-brown);
+  flex: 1;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.banner-right .title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px;
+}
+.banner-right .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  max-width: 560px;
+}
+/* make the brown background fill left half behind image */
+.banner-left::before {
+  content: "";
+  position: relative;
+  inset: 0;
+  opacity: 1;
+}
+/* responsive */
+@media (max-width: 900px) {
+  .banner {
+    flex-direction: column;
+  }
+  .banner-left,
+  .banner-right {
+    width: 100%;
+    flex: unset;
+  }
+  .banner-left {
+    padding: 18px;
+  }
+  .banner-right {
+    padding: 20px;
+    background: var(--banner-brown);
+  }
+  .banner-right .title {
+    color: #fff;
+  }
+  .banner-left img {
+    width: 92%;
+    margin-left: 0;
+  }
+}
