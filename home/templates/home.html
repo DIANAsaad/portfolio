@@ -5,19 +5,52 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Portfolio</title>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-	
+	<link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-	<section class="banner">
-		<div class="banner-left">
-			<!-- replace the path below with your static image path -->
-			<img src="{% static 'images/home_banner.jpg' %}" alt="Artwork" />
+	<div class="wrap">
+		<section class="banner">
+			<div class="banner-left">
+				<img src="{% static 'images/home_banner.jpg' %}" alt="Artwork" />
+				<!-- vertical wavy cut on the right edge (desktop) -->
+				<svg class="wave-cut wave-vertical" viewBox="0 0 200 800" preserveAspectRatio="none" aria-hidden="true">
+				  <path d="M0,0 C60,80 100,160 100,240 C100,320 60,400 100,480 C140,560 100,640 100,800 L200,800 L200,0 Z" />
+				</svg>
+			</div>
+			<div class="banner-right">
+				<h1 class="title">Bold, modern paintings</h1>
+				<p class="subtitle">A short intro text — artist statement, exhibition note, or quick call to action. Use this area to give visitors a reason to scroll.</p>
+				<button id="viewPaintingsBtn" class="cta" aria-expanded="false">View paintings</button>
+			</div>
+		</section>
+		<!-- curled decoration under banner -->
+		<div class="banner-curl" aria-hidden="true">
+			<svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" />
+				</svg>
 		</div>
-		<div class="banner-right">
-			<p class="subtitle">Write a short description or intro here. This area is meant for your headline, call-to-action, or short artist statement.</p>
-		</div>
-	</section>
+
+				<script src="{% static 'js/home.js' %}" defer></script>
+
+	<section id="gallery" class="gallery hidden" aria-hidden="true">
+			<article class="card">
+				<div class="card-figure"><img loading="lazy" src="{% static 'images/card1.jpg' %}" alt="Painting 1" /></div>
+				<h3 class="card-title">Painting One</h3>
+				<p class="card-desc">Acrylic on canvas — 2025</p>
+			</article>
+			<article class="card">
+				<div class="card-figure"><img loading="lazy" src="{% static 'images/card2.jpg' %}" alt="Painting 2" /></div>
+				<h3 class="card-title">Painting Two</h3>
+				<p class="card-desc">Mixed media — 2024</p>
+			</article>
+			<article class="card">
+				<div class="card-figure"><img loading="lazy" src="{% static 'images/card3.jpg' %}" alt="Painting 3" /></div>
+				<h3 class="card-title">Painting Three</h3>
+				<p class="card-desc">Oil on panel — 2023</p>
+			</article>
+		</section>
+	</div>
+
 </body>
 </html>
 
