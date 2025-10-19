@@ -1,56 +1,479 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Portfolio</title>
-	<link rel="stylesheet" href="{% static 'css/home.css' %}">
-</head>
-<body>
-	<div class="wrap">
-		<section class="banner">
-			<div class="banner-left">
-				<img src="{% static 'images/home_banner.jpg' %}" alt="Artwork" />
-				<!-- vertical wavy cut on the right edge (desktop) -->
-				<svg class="wave-cut wave-vertical" viewBox="0 0 200 800" preserveAspectRatio="none" aria-hidden="true">
-				  <path d="M0,0 C60,80 100,160 100,240 C100,320 60,400 100,480 C140,560 100,640 100,800 L200,800 L200,0 Z" />
-				</svg>
-			</div>
-			<div class="banner-right">
-				<h1 class="title">Bold, modern paintings</h1>
-				<p class="subtitle">A short intro text — artist statement, exhibition note, or quick call to action. Use this area to give visitors a reason to scroll.</p>
-				<button id="viewPaintingsBtn" class="cta" aria-expanded="false">View paintings</button>
-			</div>
-		</section>
-		<!-- curled decoration under banner -->
-		<div class="banner-curl" aria-hidden="true">
-			<svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
-					<path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" />
-				</svg>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Diana's Contemporary Art & Design Portfolio - Curated visual experiences"
+    />
+    <title>Diana | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  </head>
+  <body>
+    <!-- Navigation Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="nav-logo">
+            <a href="#home">
+              <span class="logo-text">Diana</span>
+              <span class="logo-accent"></span>
+            </a>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#portfolio" class="nav-link">Work</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#news" class="nav-link">Journal</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            <span class="theme-icon"></span>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
 
-				<script src="{% static 'js/home.js' %}" defer></script>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-background">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-blob blob-3"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-eyebrow">Contemporary Art & Design</div>
+          <h1 class="hero-title">
+            <span class="title-word">Curated</span>
+            <span class="title-word">Visual</span>
+            <span class="title-word">Experiences</span>
+          </h1>
+          <p class="hero-subtitle">
+            Exploring the boundaries of form, color, and meaning through
+            contemporary artistic practice.
+          </p>
+          <a href="#portfolio" class="cta-button">Explore the Collection</a>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-image">
+            <img
+              src="{% static 'images/me.jpg' %}"
+              alt="Featured artwork"
+              class="hero-img"
+            />
+            <div class="image-frame"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<section id="gallery" class="gallery hidden" aria-hidden="true">
-			<article class="card">
-				<div class="card-figure"><img loading="lazy" src="{% static 'images/card1.jpg' %}" alt="Painting 1" /></div>
-				<h3 class="card-title">Painting One</h3>
-				<p class="card-desc">Acrylic on canvas — 2025</p>
-			</article>
-			<article class="card">
-				<div class="card-figure"><img loading="lazy" src="{% static 'images/card2.jpg' %}" alt="Painting 2" /></div>
-				<h3 class="card-title">Painting Two</h3>
-				<p class="card-desc">Mixed media — 2024</p>
-			</article>
-			<article class="card">
-				<div class="card-figure"><img loading="lazy" src="{% static 'images/card3.jpg' %}" alt="Painting 3" /></div>
-				<h3 class="card-title">Painting Three</h3>
-				<p class="card-desc">Oil on panel — 2023</p>
-			</article>
-		</section>
-	</div>
+    <!-- Portfolio Section  -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="section-header">
+        <div class="header-line"></div>
+        <h2 class="section-title">Featured Works</h2>
+        <p class="section-subtitle">A selection of recent explorations</p>
+      </div>
 
-</body>
+      <!-- Filter Buttons -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Works</button>
+        <button class="filter-btn" data-filter="oil">Oil</button>
+        <button class="filter-btn" data-filter="acrylic">Acrylic</button>
+        <button class="filter-btn" data-filter="pen">Pen</button>
+        <button class="filter-btn" data-filter="pencils">Pencils</button>
+        <button class="filter-btn" data-filter="pastels">Pastels</button>
+      </div>
+
+      <!-- Masonry Gallery with Creative Layout -->
+      <div class="masonry-gallery">
+        <!-- Item 1 - Large -->
+        <article class="gallery-item large" data-category="oil">
+          <div class="gallery-item-image">
+            <img
+              src="{% static 'images/ziad.jpg' %}"
+              alt="Abstract Composition I"
+            />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Abstract Composition I</h3>
+                <p>Acrylic on Canvas • 2025</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="gallery-item" data-category="oil">
+          <div class="gallery-item-image">
+            <img src="{% static 'images/jazzz.jpg' %}" alt="Digital Landscape" />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Digital Landscape</h3>
+                <p>Digital Art • 2025</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="gallery-item" data-category="oil">
+          <div class="gallery-item-image">
+            <img
+              src="{% static 'images/flamenco.jpg' %}"
+              alt="Textured Layers"
+            />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Textured Layers</h3>
+                <p>Mixed Media • 2024</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 4 - Large -->
+        <article class="gallery-item large" data-category="acrylic">
+          <div class="gallery-item-image">
+            <img src="{% static 'images/gogh.jpg' %}" alt="Chromatic Study" />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Chromatic Study</h3>
+                <p>Oil on Panel • 2024</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="gallery-item" data-category="oil">
+          <div class="gallery-item-image">
+            <img
+              src="{% static 'images/sabah.jpg' %}"
+              alt="Spatial Form"
+            />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Spatial Form</h3>
+                <p>Bronze Sculpture • 2024</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 6 -->
+        <article class="gallery-item" data-category="acrylic">
+          <div class="gallery-item-image">
+            <img
+              src="{% static 'images/luchadora.jpg' %}"
+              alt="Geometric Harmony"
+            />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Geometric Harmony</h3>
+                <p>Digital Illustration • 2024</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+          <!-- Item 7 -->
+        <article class="gallery-item" data-category="pen">
+          <div class="gallery-item-image">
+            <img
+              src="{% static 'images/pen.jpg' %}"
+              alt="Geometric Harmony"
+            />
+            <div class="gallery-overlay">
+              <div class="overlay-content">
+                <h3>Geometric Harmony</h3>
+                <p>Digital Illustration • 2024</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <div class="portfolio-actions">
+          <a href="#portfolio" class="view-all-btn">
+            View All Works
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-image-group">
+          <div class="about-image primary">
+            <img
+              src="{% static 'images/home_banner.jpg' %}"
+              alt="Diana in studio"
+            />
+            <div class="image-accent accent-1"></div>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="content-header">
+            <h2 class="section-title">About Me :)</h2>
+            <div class="accent-line"></div>
+          </div>
+          <p class="about-text">
+            I'm a self-taught visual artist who's always been drawn to capturing
+            feelings through color and movement. Painting started as a way for
+            me to make sense of my thoughts, and what's happening around me. Over time it became my favorite
+            way to tell stories without words. A lot of my work explores the
+            relationship between people and music — the way sound can shape
+            emotions, memories, and moments.
+          </p>
+          <p class="about-text">
+            I've been creating art for over four years, and for me, it's always
+            been about connection. I love making pieces that draw people in and
+            make them pause for a moment — to feel something, reflect, or start
+            a conversation.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">40+</span>
+              <span class="stat-label">Works</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">3k+</span>
+              <span class="stat-label">Audience Base</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Recognitions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Section -->
+    <section class="studio-section">
+      <div class="studio-header">
+        <div class="header-line"></div>
+        <h2 class="section-title">Studio & Process</h2>
+      </div>
+      <div class="studio-gallery">
+        <div class="studio-image full-width">
+          <img
+            src="https://images.unsplash.com/photo-1578321272176-b7bff4b4e6b8?w=1200&h=400&fit=crop"
+            alt="Studio workspace"
+          />
+          <div class="studio-overlay">
+            <p>Where ideas take form</p>
+          </div>
+        </div>
+        <div class="studio-grid">
+          <div class="studio-image">
+            <img
+              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+              alt="Work in progress"
+            />
+            <div class="studio-label">Exploration</div>
+          </div>
+          <div class="studio-image">
+            <img
+              src="https://images.unsplash.com/photo-1578321272176-b7bff4b4e6b8?w=400&h=400&fit=crop"
+              alt="Materials and tools"
+            />
+            <div class="studio-label">Creation</div>
+          </div>
+          <div class="studio-image">
+            <img
+              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop"
+              alt="Creative process"
+            />
+            <div class="studio-label">Refinement</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News & Journal Section -->
+    <section id="news" class="news-section">
+      <div class="section-header">
+        <div class="header-line"></div>
+        <h2 class="section-title">Journal</h2>
+        <p class="section-subtitle">
+          Thoughts, exhibitions, and creative insights
+        </p>
+      </div>
+
+      <div class="news-grid">
+        <!-- News Item 1 -->
+        <article class="news-card featured">
+          <div class="news-image">
+            <img
+              src="https://images.unsplash.com/photo-1578321272176-b7bff4b4e6b8?w=600&h=350&fit=crop"
+              alt="New exhibition"
+            />
+            <div class="news-badge">Featured</div>
+          </div>
+          <div class="news-content">
+            <span class="news-date">October 18, 2025</span>
+            <h3 class="news-title">Chromatic Dialogues: A New Exhibition</h3>
+            <p class="news-excerpt">
+              Exploring the relationship between color and emotion in a series
+              of large-scale paintings. Opening next month at the Contemporary
+              Gallery.
+            </p>
+            <a href="#" class="news-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <!-- News Item 2 -->
+        <article class="news-card">
+          <div class="news-image">
+            <img
+              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=350&fit=crop"
+              alt="Artist interview"
+            />
+          </div>
+          <div class="news-content">
+            <span class="news-date">October 10, 2025</span>
+            <h3 class="news-title">Artist Interview: Process & Inspiration</h3>
+            <p class="news-excerpt">
+              In-depth conversation about creative practice, influences, and the
+              evolution of my work over the past five years.
+            </p>
+            <a href="#" class="news-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <!-- News Item 3 -->
+        <article class="news-card">
+          <div class="news-image">
+            <img
+              src="https://images.unsplash.com/photo-1578321272176-b7bff4b4e6b8?w=600&h=350&fit=crop"
+              alt="Workshop announcement"
+            />
+          </div>
+          <div class="news-content">
+            <span class="news-date">October 5, 2025</span>
+            <h3 class="news-title">Workshop: Mixed Media Techniques</h3>
+            <p class="news-excerpt">
+              Join a hands-on workshop exploring experimental approaches to
+              combining traditional and digital mediums.
+            </p>
+            <a href="#" class="news-link">Read Full Article →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <div class="contact-header">
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="accent-line"></div>
+        </div>
+        <p class="contact-subtitle">
+          For inquiries, commissions, or collaborations
+        </p>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <h3>Email</h3>
+              <a href="mailto:hello@diana.art">dianasaad232@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <h3>Based In</h3>
+              <p>Lebanon</p>
+            </div>
+            <div class="contact-item">
+              <h3>Follow</h3>
+              <div class="social-links">
+                <a
+                  href="https://www.instagram.com/dianas_arttt?igsh=ZGJ1MXV4YmlwZmN3"
+                  aria-label="Instagram"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect
+                      x="2"
+                      y="2"
+                      width="20"
+                      height="20"
+                      rx="5"
+                      ry="5"
+                    ></rect>
+                    <path
+                      d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                    ></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.facebook.com/share/1XQUfE1c3f/?mibextid=wwXIfr#"
+                  aria-label="Facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M22 12.07C22 6.48 17.52 2 11.93 2 6.34 2 1.86 6.48 1.86 12.07c0 4.99 3.66 9.13 8.44 9.93v-7.03H8.08v-2.9h2.22V9.41c0-2.2 1.31-3.41 3.32-3.41.96 0 1.96.17 1.96.17v2.15h-1.1c-1.09 0-1.43.68-1.43 1.38v1.66h2.44l-.39 2.9h-2.05V22c4.78-.8 8.44-4.94 8.44-9.93z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2025 Diana. All rights reserved.</p>
+        <p>Crafted with intention and artistic vision.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/home.js' %}"></script>
+  </body>
 </html>
-
