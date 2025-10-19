@@ -30,9 +30,15 @@ class Painting(models.Model):
         ('not available', 'Not Available')
     ])
 
+
 class Article(models.Model):
     title= models.CharField(max_length=200)
     content= models.TextField()
     published_at= models.DateTimeField(auto_now_add=True)
     image= models.ImageField(upload_to='articles/', null=True, blank=True)
+
+class Message(models.Model):
+    name=models.CharField(max_length=100, blank=True, null=True)
+    message=models.TextField()
+    sent_at=models.DateTimeField(auto_now_add=True)
 

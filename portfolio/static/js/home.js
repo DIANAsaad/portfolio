@@ -242,11 +242,16 @@ document.querySelectorAll('.gallery-item').forEach(item => {
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    initializeTheme();
+
     document.body.classList.add('loaded');
-    // hide pen item on initial load
-    const penItems = document.querySelectorAll('.gallery-item[data-category="pen"]');
-    penItems.forEach(item => item.classList.add('hidden'));
+
+    // Hide pen items on initial load
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        if (item.getAttribute('data-category') === 'pen') {
+            item.classList.add('hidden');
+        }
+    });
+ 
     // Preload critical images
     const criticalImages = document.querySelectorAll('.hero-img, .about-image img');
     criticalImages.forEach(img => {
@@ -274,3 +279,41 @@ if (window.performance && window.performance.timing) {
 console.log('%cWelcome to Diana\'s Portfolio', 'font-size: 20px; font-weight: bold; color: #8b4513;');
 console.log('%cExploring the boundaries of form, color, and meaning', 'font-size: 12px; color: #d4a574;');
 
+// ============================================
+// POP UP MESSAGE FORM
+// ============================================
+const messageButton = document.querySelector('.cta-button');
+
+messageButton.addEventListener('click', () => {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.classList.add('popup-overlay');
+
+    // Create popup form
+    const messageForm = document.createElement('div');
+    messageForm.classList.add('message-form');
+    messageForm.innerHTML = `
+        <h3>Leave a Message 🙂</h3>
+        <h4>Your Name (optional)</h4>
+        <input type="text" placeholder="Your name..."/>
+        <h4>Your Message</h4>
+        <textarea placeholder="Your message..."></textarea>
+        <button class="submit-message">Send</button>
+        <button class="close-popup">Close</button>
+    `;
+
+    overlay.appendChild(messageForm);
+    document.body.appendChild(overlay);
+
+    // Close button functionality
+    messageForm.querySelector('.close-popup').addEventListener('click', () => {
+        overlay.remove();
+    });
+
+    // Optional: Close popup when clicking outside it
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.remove();
+        }
+    });
+});
