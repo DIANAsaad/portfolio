@@ -246,12 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loaded');
     // hide pen item on initial load
     const penItems = document.querySelectorAll('.gallery-item[data-category="pen"]');
-
-    penItems.forEach(item => {
-        item.classList.add('hidden');
-        // ensure immediate hiding even if CSS hasn't applied yet
-        try { item.style.display = 'none'; } catch (e) { /* noop */ }
-    });
+    penItems.forEach(item => item.classList.add('hidden'));
     // Preload critical images
     const criticalImages = document.querySelectorAll('.hero-img, .about-image img');
     criticalImages.forEach(img => {
