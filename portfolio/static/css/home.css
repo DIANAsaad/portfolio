@@ -1449,6 +1449,10 @@ body {
    POP UP MESSAGE STYLES
    ============================================ */
 
+/* ============================================
+   POP UP MESSAGE STYLES  (updated)
+   ============================================ */
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -1463,6 +1467,7 @@ body {
     backdrop-filter: blur(5px);
 }
 
+/* Use the same body font everywhere inside the pop-up */
 .message-form {
     background: var(--gradient-1);
     color: var(--color-secondary);
@@ -1473,12 +1478,23 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     position: relative;
     animation: popup-fade-in var(--transition-normal) ease;
+    font-family: var(--font-family-body); /* NEW */
 }
+
+/* Ensure all children inherit consistent typography */
+.message-form * {
+    font-family: inherit;               /* NEW */
+    letter-spacing: 0.2px;              /* optional, keeps consistency */
+}
+
+/* If you prefer headings to keep the display font, comment out these two lines */
+/* .message-form h3, .message-form h4 { font-family: var(--font-family-body); }  */
 
 .message-form h3,
 .message-form h4 {
     margin: 0.5rem 0;
     text-align: left;
+    font-weight: 700;
 }
 
 .message-form input,
@@ -1492,6 +1508,7 @@ body {
     background: rgba(255, 255, 255, 0.15);
     color: var(--color-secondary);
     outline: none;
+    font-size: 0.95rem;                 /* NEW: consistent sizing */
 }
 
 .message-form input::placeholder,
@@ -1522,6 +1539,7 @@ body {
     transform: scale(1.03);
 }
 
+/* Close button: convert to an “X” with pseudo-elements */
 .close-popup {
     position: absolute;
     top: 10px;
@@ -1529,13 +1547,61 @@ body {
     background: transparent;
     border: none;
     color: var(--color-secondary);
-    font-size: 1.5rem;
+    width: 36px;                        /* NEW */
+    height: 36px;                       /* NEW */
     cursor: pointer;
+    padding: 0;                         /* NEW */
+    line-height: 1;                     /* NEW */
+    display: inline-flex;               /* NEW */
+    align-items: center;                /* NEW */
+    justify-content: center;            /* NEW */
+}
+
+/* Hide any text inside (e.g., “close”) but keep it accessible */
+.close-popup span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* The “X” lines */
+.close-popup::before,
+.close-popup::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: currentColor;           /* uses var(--color-secondary) via color */
+    border-radius: 1px;
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.close-popup::before {
+    transform: rotate(45deg);
+}
+
+.close-popup::after {
+    transform: rotate(-45deg);
+}
+
+/* Hover feedback */
+.close-popup:hover::before,
+.close-popup:hover::after {
+    opacity: 0.85;
+    transform: scale(1.05) rotate(45deg);
+}
+.close-popup:hover::after {
+    transform: scale(1.05) rotate(-45deg);
 }
 
 @keyframes popup-fade-in {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 
