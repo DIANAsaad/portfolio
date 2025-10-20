@@ -75,9 +75,8 @@ filterButtons.forEach((button) => {
           item.classList.remove("hidden");
           item.style.animation = "none";
           setTimeout(() => {
-            item.style.animation = `fadeInUp 0.6s ease-out ${
-              index * 0.05
-            }s both`;
+            item.style.animation = `fadeInUp 0.6s ease-out ${index * 0.05
+              }s both`;
           }, 10);
         }
       } else if (category === filterValue) {
@@ -340,13 +339,18 @@ function openMessagePopup() {
     if (e.target === overlay) overlay.remove();
   });
 
-  // Submit handler (attached while messageForm is in scope)
+  // Submit handler 
   submitBtn.addEventListener("click", async () => {
     const name = (nameInput.value || "").trim();
     const message = (messageInput.value || "").trim();
 
     if (!message) {
-      alert("Please enter a message.");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Can't send empty messages :p";
+      setTimeout(() => {
+        submitBtn.textContent = "Send";
+        submitBtn.disabled = false;
+      }, 2000);
       return;
     }
 
@@ -354,7 +358,7 @@ function openMessagePopup() {
     submitBtn.textContent = "Sending...";
 
     try {
-      const res = await fetch("/add-message", { // adjust URL as needed
+      const res = await fetch("/add-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -368,16 +372,17 @@ function openMessagePopup() {
         throw new Error(errText || `Server returned ${res.status}`);
       }
 
-      // Success -> close and inform user
-      alert("Thanks — your message was sent.");
-      overlay.remove();
+      submitBtn.textContent = "Sent! Thanks for your message :)";
+
+
     } catch (err) {
-      console.error("Send failed:", err);
-      alert("Sorry — could not send your message. Try again later.");
+      submitBtn.textContent = " Failed to send :(";
     } finally {
       if (document.body.contains(overlay)) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send";
+        setTimeout(() => {
+          submitBtn.textContent = "Send";
+          submitBtn.disabled = false;
+        }, 2000);
       }
     }
   });

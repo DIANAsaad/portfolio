@@ -13,8 +13,8 @@ def home(request):
 
 @require_POST
 def add_message(request):
-    # Expect JSON body
     try:
+        # parse python object from JSON returned from decoding data
         payload = json.loads(request.body.decode("utf-8") or "{}")
     except (ValueError, TypeError):
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON.'}, status=400)
@@ -29,7 +29,6 @@ def add_message(request):
     if len(message_text) > 2000:
         return JsonResponse({'status': 'error', 'message': 'Message too long.'}, status=400)
 
-    # Save
     try:
         Message.objects.create(name=name, message=message_text)
     except Exception as e:
