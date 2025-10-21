@@ -6,7 +6,7 @@ class Painting(models.Model):
     title= models.CharField(max_length=200)
     description= models.TextField()
     image= models.ImageField(upload_to='paintings/')
-    created_at= models.DateTimeField(auto_now_add=True)
+    created_at= models.DateTimeField()
     medium=models.CharField(max_length=100, choices=[
         ('oil', 'Oil'),
         ('acrylic', 'Acrylic'),

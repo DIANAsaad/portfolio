@@ -7,8 +7,13 @@ import json
 # Create your views here.
 
 def home(request):
-    paintings= Painting.objects.all()
-    return render(request, 'home.html', {'paintings': paintings})
+    return render(request, 'home.html')
+
+# All work page
+
+def all_work(request):
+    paintings = Painting.objects.all()
+    return render(request, 'all_work.html',{'paintings':paintings})
 
 
 @require_POST

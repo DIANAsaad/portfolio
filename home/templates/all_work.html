@@ -1,0 +1,42 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>All Works</title>
+  <link rel="stylesheet" href="{% static 'css/all_work.css' %}">
+</head>
+<body>
+  <main class="wrap">
+    <header class="section-header" style="margin-top:100px;">
+      <div class="header-line"></div>
+      <h1 class="section-title">All Works</h1>
+      <p class="section-subtitle">A chronological view of paintings and studies</p>
+    </header>
+
+    <section class="all-works-list">
+      {% for p in paintings %}
+      <article class="all-work-row">
+        <figure class="all-work-image">
+          {% if p.image %}
+          <img src="{{ p.image.url }}" alt="{{ p.title }}" loading="lazy">
+          {% else %}
+          <img src="{% static 'images/placeholder.png' %}" alt="{{ p.title }}" loading="lazy">
+          {% endif %}
+        </figure>
+        <div class="all-work-meta">
+          <h3>{{ p.title }}</h3>
+          <p class="muted">{{ p.medium }} • {{ p.created_at }}</p>
+          <p>{{ p.description|default_if_none:"" }}</p>
+          <p class="muted">{{ p.dimensions }} • {{ p.material }} • {{ p.availability }}</p>
+        </div>
+      </article>
+      {% empty %}
+      <p>No works found.</p>
+      {% endfor %}
+    </section>
+
+  </main>
+</body>
+</html>
