@@ -1,3 +1,5 @@
+  <!-- NEEDED: HEADER, REDIRECT TO HOME PAGE. MINIMAL DESIGN FOR NOW-->
+
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -5,6 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>All Works</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link rel="stylesheet" href="{% static 'css/all_work.css' %}">
 </head>
 <body>
@@ -26,10 +29,13 @@
           {% endif %}
         </figure>
         <div class="all-work-meta">
-          <h3>{{ p.title }}</h3>
-          <p class="muted">{{ p.medium }} • {{ p.created_at }}</p>
-          <p>{{ p.description|default_if_none:"" }}</p>
-          <p class="muted">{{ p.dimensions }} • {{ p.material }} • {{ p.availability }}</p>
+          <h3><a href="{% url 'individual_work' p.id %}">Title: {{ p.title }}</a></h3>
+          <p class="muted"><b>Medium:</b> {{ p.medium }}</p>
+          <p class="muted"><b>Created At:</b> {{ p.created_at }}</p>
+          <p><b>Description:</b> {{ p.description|default_if_none:"" }}</p>
+          <p class="muted"><b>Dimensions:</b> {{ p.dimensions }}</p>
+          <p class="muted"><b>Material:</b> {{ p.material }}</p>
+          <p class="muted"><b>Availability:</b> {{ p.availability }}</p>
         </div>
       </article>
       {% empty %}
@@ -40,3 +46,4 @@
   </main>
 </body>
 </html>
+
