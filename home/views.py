@@ -7,9 +7,8 @@ import json
 # Create your views here.
 
 def home(request):
-    id=Painting.objects.get(title="Luchadora").id
 
-    return render(request, 'home.html',{'id':id})
+    return render(request, 'home.html')
 
 # All work page
 
@@ -20,6 +19,26 @@ def all_work(request):
 def individual_work(request,id):
     painting=Painting.objects.get(id=id)
     return render(request, 'individual_work.html', {'painting': painting})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ADD a message
 
