@@ -1518,10 +1518,6 @@ body {
    POP UP MESSAGE STYLES
    ============================================ */
 
-/* ============================================
-   POP UP MESSAGE STYLES  (updated)
-   ============================================ */
-
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -1572,7 +1568,7 @@ body {
   background: rgba(255, 255, 255, 0.15);
   color: var(--color-secondary);
   outline: none;
-  font-size: 0.95rem; /* NEW: consistent sizing */
+  font-size: 0.95rem; 
 }
 
 .message-form input::placeholder,
@@ -1607,7 +1603,6 @@ body {
   cursor: not-allowed;
   opacity: 0.6;
 }
-/* Close button: convert to an “X” with pseudo-elements */
 .close-popup {
   position: absolute;
   top: 10px;
@@ -1625,7 +1620,7 @@ body {
   justify-content: center; 
 }
 
-/* Hide any text inside (e.g., “close”) but keep it accessible */
+
 .close-popup span {
   position: absolute;
   width: 1px;

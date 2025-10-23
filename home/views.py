@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Painting, Message
+from .models import Painting, Message, Article
 import json
 
 # Create your views here.
@@ -19,6 +19,17 @@ def all_work(request):
 def individual_work(request,id):
     painting=Painting.objects.get(id=id)
     return render(request, 'individual_work.html', {'painting': painting})
+
+# All articles page
+
+def all_articles(request):
+    articles = Article.objects.all()
+    return render(request, 'all_articles.html', {'articles': articles})
+
+def individual_article(request, id):
+    article = Article.objects.get(id=id)
+    return render(request, 'individual_article.html', {'article': article})
+
 
 
 
